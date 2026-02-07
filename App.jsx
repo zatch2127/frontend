@@ -59,6 +59,17 @@ const App = () => {
       mixpanel.track("Test Event After Delay");
     }, 2000);
   }, []);
+  const isPreceptionRoute =
+    currentRoute === "Prescription" ||
+    currentRoute === "AppointmentsPage" ||
+    (Platform.OS === "web" &&
+      typeof window !== "undefined" &&
+      (window.location.pathname === "/prescription" ||
+        window.location.pathname === "/AppointmentsPage" ||
+        window.location.pathname === "/appointments" ||
+        window.location.search.includes("initialNav=appointments") ||
+        window.location.search.includes("initialNav=prescription")));
+
   return (
     <AuthProvider>
       <ThemeProvider>
@@ -75,7 +86,9 @@ const App = () => {
                   currentRoute={currentRoute}
                 >
                   <RootNavigation />
-                  <ChatBotOverlay navigationRef={navigationRef} />
+                  {!isPreceptionRoute && (
+                    <ChatBotOverlay navigationRef={navigationRef} />
+                  )}
                 </AuthPopupProvider>
               </NavigationContainer>
             </LoginModalProvider>

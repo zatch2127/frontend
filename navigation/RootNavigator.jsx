@@ -318,6 +318,7 @@ import WelcomePage from "../screens/PatientScreens/WelcomePage";
 import DoctorResultShow from "../screens/PatientScreens/Doctors/DoctorResultShow";
 import DoctorPortalLandingPage from "../screens/DoctorScreens/DoctorPortalLandingPage";
 import NewMedicineLandingPage from "../screens/NewMedicineLandingPage";
+import PrescriptionNavigation from "./PrescriptionNavigation";
 
 // Lazy-loaded navigators
 let DoctorAppNavigation;
@@ -346,6 +347,8 @@ export const linking = {
       NewMedicineLandingPage:"NewMedicinelLandingPage",
       WelcomePage: "WelcomePage",
       LandingPage: "Home",
+      Prescription: "prescription",
+      AppointmentsPage: "AppointmentsPage",
       DoctorAppNavigation: {
         path: "doctor",
         screens: {
@@ -434,6 +437,9 @@ const RootNavigation = () => {
   const getRouteFromUrl = () => {
     if (Platform.OS === "web" && typeof window !== "undefined") {
       const pathname = window.location.pathname;
+      if (pathname === "/prescription") return "Prescription";
+      if (pathname === "/AppointmentsPage" || pathname === "/appointments")
+        return "AppointmentsPage";
       if (!user && pathname.startsWith("/doctor")) return "DoctorAppNavigation";
       if (!user && pathname.startsWith("/patient")) return "PatientAppNavigation";
       if (pathname === "/" || pathname === "/Home") return null;
@@ -476,6 +482,12 @@ const RootNavigation = () => {
           <Stack.Screen name="DoctorsSignUp" component={DoctorsSignUp} />
           <Stack.Screen name="DoctorPortalLandingPage" component={DoctorPortalLandingPage}></Stack.Screen>
           <Stack.Screen name="NewMedicineLandingPage" component={NewMedicineLandingPage}></Stack.Screen>
+          <Stack.Screen name="Prescription" component={PrescriptionNavigation} />
+          <Stack.Screen
+            name="AppointmentsPage"
+            component={PrescriptionNavigation}
+            initialParams={{ initialNav: "appointments" }}
+          />
         </Stack.Navigator>
       </Suspense>
     </RegistrationProvider>
