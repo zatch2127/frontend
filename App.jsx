@@ -62,11 +62,13 @@ const App = () => {
   const isPreceptionRoute =
     currentRoute === "Prescription" ||
     currentRoute === "AppointmentsPage" ||
+    currentRoute === "PatientDetails" ||
     (Platform.OS === "web" &&
       typeof window !== "undefined" &&
       (window.location.pathname === "/prescription" ||
         window.location.pathname === "/AppointmentsPage" ||
         window.location.pathname === "/appointments" ||
+        window.location.pathname.startsWith("/patient-details/") ||
         window.location.search.includes("initialNav=appointments") ||
         window.location.search.includes("initialNav=prescription")));
 

@@ -349,6 +349,7 @@ export const linking = {
       LandingPage: "Home",
       Prescription: "prescription",
       AppointmentsPage: "AppointmentsPage",
+      PatientDetails: "patient-details/:id",
       DoctorAppNavigation: {
         path: "doctor",
         screens: {
@@ -440,6 +441,7 @@ const RootNavigation = () => {
       if (pathname === "/prescription") return "Prescription";
       if (pathname === "/AppointmentsPage" || pathname === "/appointments")
         return "AppointmentsPage";
+      if (pathname.startsWith("/patient-details/")) return "PatientDetails";
       if (!user && pathname.startsWith("/doctor")) return "DoctorAppNavigation";
       if (!user && pathname.startsWith("/patient")) return "PatientAppNavigation";
       if (pathname === "/" || pathname === "/Home") return null;
@@ -487,6 +489,11 @@ const RootNavigation = () => {
             name="AppointmentsPage"
             component={PrescriptionNavigation}
             initialParams={{ initialNav: "appointments" }}
+          />
+          <Stack.Screen
+            name="PatientDetails"
+            component={PrescriptionNavigation}
+            initialParams={{ initialNav: "PatientDetails" }}
           />
         </Stack.Navigator>
       </Suspense>

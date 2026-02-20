@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Card = ({ 
-  children, 
-  className = '', 
+const Card = ({
+  children,
+  className = '',
   padding = 'p-6',
-  onClick 
+  onClick
 }) => {
   return (
     <div

@@ -44,10 +44,9 @@ const FileUploadZone = ({ onFilesUploaded }) => {
       className={`
         relative rounded-xl p-8 md:p-12
         border-2 border-dashed transition-all duration-300
-        ${
-          isDragging
-            ? 'border-rose-400 bg-rose-50 scale-[1.02]'
-            : 'border-gray-300 bg-gray-50 hover:border-rose-300 hover:bg-rose-50/50'
+        ${isDragging
+          ? 'border-rose-400 bg-rose-50 scale-[1.02]'
+          : 'border-gray-300 bg-gray-50 hover:border-rose-300 hover:bg-rose-50/50'
         }
       `}
     >
@@ -68,7 +67,7 @@ const FileUploadZone = ({ onFilesUploaded }) => {
         </div>
 
         {/* Browse Button */}
-        <label className="cursor-pointer">
+        <label className="cursor-pointer relative z-10">
           <input
             type="file"
             multiple
@@ -76,8 +75,8 @@ const FileUploadZone = ({ onFilesUploaded }) => {
             onChange={handleFileSelect}
             accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
           />
-          <span className="text-rose-500 hover:text-rose-600 font-medium underline transition-colors">
-            Browse
+          <span className="inline-block px-4 py-2 bg-rose-50 text-rose-600 rounded-lg border border-rose-200 font-semibold hover:bg-rose-100 transition-colors shadow-sm">
+            Browse to upload
           </span>
         </label>
       </div>

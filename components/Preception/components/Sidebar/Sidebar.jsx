@@ -5,6 +5,7 @@ import NavItem from '../../NavItem';
 import { Asset } from 'expo-asset';
 import Logo from '../../assets/Image/KokoroLogo.png';
 
+
 const Sidebar = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen, activeNav, setActiveNav } = useDashboard();
   const navigation = useNavigation();
@@ -37,6 +38,7 @@ const Sidebar = () => {
     if (id === 'prescription') {
       navigation.navigate('Prescription');
     }
+
   };
 
   const logoUrl = Asset.fromModule(Logo).uri || Logo;
@@ -44,9 +46,9 @@ const Sidebar = () => {
   return (
     <aside
       className={`
-        fixed left-0 top-0 h-screen w-64 z-50
-        bg-gradient-to-b from-gray-50 to-white
-        border-r border-gray-200
+        fixed left-0 top-0 h-screen w-64 z-[60]
+        bg-white/90 backdrop-blur-xl
+        border-r border-gray-200/60 shadow-2xl shadow-gray-200/50
         flex flex-col
         transition-transform duration-300 ease-in-out
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}

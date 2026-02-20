@@ -2,17 +2,22 @@ import React from 'react';
 import { useDashboard } from './context/Dashboardcontext';
 import PrescriptionPage from './pages/PrescriptionPage';
 import AppointmentsPage from './pages/AppointmentsPage';
+import PatientDetailsPage from './pages/PatientDetailsPage';
+import NotificationPage from './pages/NotificationPage';
+import ReminderPage from './pages/ReminderPage';
+import HistoryPage from './pages/HistoryPage';
 
 /* ================= Page Registry ================= */
 
 const PAGE_MAP = {
   prescription: PrescriptionPage,
   appointments: AppointmentsPage,
+  PatientDetails: PatientDetailsPage,
   home: () => <PlaceholderPage title="Home" icon="🏠" />,
   calendar: () => <PlaceholderPage title="Calendar" icon="📅" />,
-  history: () => <PlaceholderPage title="History" icon="🕐" />,
-  reminder: () => <PlaceholderPage title="Reminder" icon="⏰" />,
-  notification: () => <PlaceholderPage title="Notifications" icon="🔔" />,
+  history: HistoryPage,
+  reminder: ReminderPage,
+  notification: NotificationPage,
   profile: () => <PlaceholderPage title="Profile" icon="👤" />,
   settings: () => <PlaceholderPage title="Settings" icon="⚙️" />,
   contact: () => <PlaceholderPage title="Contact Us" icon="💬" />,
@@ -30,7 +35,7 @@ const ContentArea = () => {
     PAGE_MAP[activeNav] || PAGE_MAP[DEFAULT_PAGE];
 
   return (
-    <main className="flex justify-center w-full px-4 md:px-4">
+    <main className="flex justify-center w-full p-4 md:p-4 ">
       <PageComponent />
     </main>
   );

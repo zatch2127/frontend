@@ -39,12 +39,12 @@ const MainLayout = () => {
       <Sidebar />
 
       {/* Main Content Area */}
-      <main className="relative flex-1 lg:ml-64 transition-all duration-300 min-h-screen">
+      <main className="relative flex-1 lg:ml-64 transition-all duration-300 min-h-screen w-full max-w-full overflow-x-hidden">
         <div
-          className="hidden lg:block absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className=" h-full fixed inset-0 z-0 hidden lg:block absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundUrl})` }}
         />
-        <div className="relative min-h-screen bg-white/60">
+        <div className="relative min-h-screen z-10">
           <MainContent />
         </div>
       </main>

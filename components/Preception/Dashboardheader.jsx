@@ -4,51 +4,66 @@ import { Asset } from 'expo-asset';
 import logo from './assets/Image/KokoroLogo.png';
 
 const DashboardHeader = () => {
-  const { setIsMobileMenuOpen } = useDashboard();
+  const { setIsMobileMenuOpen, activeNav } = useDashboard();
 
   const logoUrl = Asset.fromModule(logo).uri || logo;
 
-  return (
-    <div className="relative mb-6 rounded-2xl overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-rose-400 via-rose-500 to-pink-600" />
-      
-      {/* Decorative circles */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-20">
-        <div className="w-32 h-32 rounded-full bg-white" />
-      </div>
-      <div className="absolute right-20 top-8 opacity-30">
-        <div className="w-16 h-16 rounded-full bg-white" />
-      </div>
-      <div className="absolute right-12 bottom-8 opacity-25">
-        <div className="w-20 h-20 rounded-full bg-white" />
-      </div>
+  const getHeaderContent = () => {
+    if (activeNav === 'prescription' || activeNav === 'appointments') {
+      return {
+        title: 'Welcome Doctor!',
+        subtitle: 'Here is your Medical dashboard'
+      };
+    }
 
+    // Default: Capitalize activeNav
+    const title = activeNav.charAt(0).toUpperCase() + activeNav.slice(1);
+    return {
+      title: title,
+      subtitle: '' // Or some default subtitle if needed
+    };
+  };
+
+  const { title, subtitle } = getHeaderContent();
+
+  return (
+    <div className="relative mb-6 rounded-2xl overflow-hidden bg-transparent">
       {/* Content */}
-      <div className="relative z-10 p-8">
+      <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-4">
+
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden absolute top-4 left-4 text-white text-2xl hover:bg-white/20 rounded-lg p-2 transition-colors"
+          className="lg:hidden absolute top-0 left-0 text-gray-800 text-2xl p-2"
           onClick={() => setIsMobileMenuOpen(true)}
         >
           ☰
         </button>
 
-        <div className="flex items-center gap-4 lg:ml-0 ml-12">
-          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/90 p-2 flex items-center justify-center shadow-sm">
-            <img
-              src={logoUrl}
-              alt="Kokoro Doctor"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Welcome Doctor!
-            </h1>
-            <p className="text-white/90 text-base md:text-lg">
-              Here is your Medical dashboard
+        <div className="lg:ml-0 ml-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-1">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="text-white/80 text-sm md:text-base">
+              {subtitle}
             </p>
+          )}
+        </div>
+
+        {/* Right Actions */}
+        <div className="flex items-center gap-4 self-end md:self-auto">
+          {/* Notification */}
+          <button className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-colors">
+            <span className="text-xl">🔔</span>
+          </button>
+
+          {/* Profile */}
+          <div className="flex items-center gap-2 cursor-pointer group">
+            <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden">
+              {/* Placeholder for user image if not available */}
+              <img src="https://ui-avatars.com/api/?name=Dr+Buddy&background=random" alt="Profile" className="w-full h-full object-cover" />
+            </div>
+            <span className="text-white text-sm">▼</span>
           </div>
         </div>
       </div>
