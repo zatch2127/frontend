@@ -79,7 +79,7 @@ const PrescriptionForm = () => {
               <div className="flex flex-col items-center gap-2 pointer-events-none">
                 {uploadedFiles.length > 0 ? (
                   uploadedFiles.map((file, index) => (
-                    <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden group shrink-0 z-20 pointer-events-auto">
+                    <div key={index} className="flex items-center gap-3 bg-w hite p-3 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden group shrink-0 z-20 pointer-events-auto">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500 absolute left-2"></div>
 
                       {/* Preview / Icon */}

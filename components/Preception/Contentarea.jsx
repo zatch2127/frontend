@@ -6,6 +6,7 @@ import PatientDetailsPage from './pages/PatientDetailsPage';
 import NotificationPage from './pages/NotificationPage';
 import ReminderPage from './pages/ReminderPage';
 import HistoryPage from './pages/HistoryPage';
+import SettingsPage from './pages/SettingsPage';
 
 /* ================= Page Registry ================= */
 
@@ -19,7 +20,7 @@ const PAGE_MAP = {
   reminder: ReminderPage,
   notification: NotificationPage,
   profile: () => <PlaceholderPage title="Profile" icon="👤" />,
-  settings: () => <PlaceholderPage title="Settings" icon="⚙️" />,
+  settings: SettingsPage,
   contact: () => <PlaceholderPage title="Contact Us" icon="💬" />,
   help: () => <PlaceholderPage title="Help" icon="❓" />
 };
@@ -35,7 +36,7 @@ const ContentArea = () => {
     PAGE_MAP[activeNav] || PAGE_MAP[DEFAULT_PAGE];
 
   return (
-    <main className="flex justify-center w-full p-4 md:p-4 ">
+    <main className={`flex justify-center w-full ${activeNav === 'settings' ? '' : 'p-4 md:p-4'}`}>
       <PageComponent />
     </main>
   );
